@@ -1,0 +1,16 @@
+extends ../layout 
+
+block content 
+  h1 Listado de Personajes
+  table.table(style='text-align: center;')
+    thead 
+      tr 
+        th(scope='col') Name
+        th(scope='col') Age
+        th(scope='col') Weight
+    tbody 
+      each character in characters 
+        tr
+          td= character.name 
+          td= character.age 
+          td= character.weight 

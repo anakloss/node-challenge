@@ -1,0 +1,27 @@
+extends ../layout
+
+block content 
+  a(href='/characters') Volver
+
+  br
+  br
+  br
+
+  h1 Nuevo Personaje 
+
+  br
+  br
+
+  form(action='/characters/create' method='post')
+    label(for='name') Nombre: 
+    input#name(type='text' name='name')
+    br
+    label(for='age') Edad: 
+    input#age(type='text' name='age')
+    br
+    label(for='weight') Peso: 
+    input#weight(type='text' name='weight')
+    br
+    br
+
+    input.btn(type='submit', value='OK')
