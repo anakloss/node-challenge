@@ -19,14 +19,16 @@ Character.add = function(aChar) {
 Character.findById = function(aCharId) {
     let aChar = Character.allCharacter.find(x => x.id == aCharId);
     if (aChar) return aChar;
-    else throw Error(`No se encuentra personaje con el id $(aCharId)`);
+    else throw new Error(`No se encuentra personaje con el id ${aCharId}`);
 }
 
 Character.removeById = function(aCharId) {
-    let aChar = Character.findById(aCharId);
-    // for(let i=0; i<Character.allCharacter.length; i++) {
-    //     if (Character)
-    // }
+    for(let i=0; i<Character.allCharacter.length; i++) {
+        if (Character.allCharacter[i].id == aCharId) {
+            Character.allCharacter.splice(i, 1);
+            break;
+        }
+    }
 }
 
 let a = new Character(1, 'Juan', 25, 80.5);

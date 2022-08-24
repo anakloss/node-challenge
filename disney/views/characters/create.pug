@@ -13,6 +13,9 @@ block content
   br
 
   form(action='/characters/create' method='post')
+    label(for='id') ID: 
+    input#id(type='text' name='id')
+    br
     label(for='name') Nombre: 
     input#name(type='text' name='name')
     br

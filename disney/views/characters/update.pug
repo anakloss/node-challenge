@@ -1,0 +1,30 @@
+extends ../layout
+
+block content 
+  a(href='/characters') Volver
+
+  br
+  br
+  br
+
+  h1 Editar Personaje 
+
+  br
+  br
+
+  form(action=`/characters/update/${aChar.id}` method='post')
+    label(for='id') ID: 
+    input#id(type='text' name='id' value=aChar.id)
+    br
+    label(for='name') Nombre: 
+    input#name(type='text' name='name' value=aChar.name)
+    br
+    label(for='age') Edad: 
+    input#age(type='text' name='age' value=aChar.age)
+    br
+    label(for='weight') Peso: 
+    input#weight(type='text' name='weight' value=aChar.weight)
+    br
+    br
+
+    input.btn(type='submit', value='OK')
