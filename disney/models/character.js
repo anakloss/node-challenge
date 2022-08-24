@@ -1,4 +1,5 @@
-const Character = function(name, age, weight) {
+const Character = function(id, name, age, weight) {
+    this.id = id;
     this.name = name;
     this.age = age;
     this.weight = weight;
@@ -15,8 +16,21 @@ Character.add = function(aChar) {
     Character.allCharacter.push(aChar);
 }
 
-let a = new Character('Juan', 25, 80.5);
-let b = new Character('Maria', 20, 61.0);
+Character.findById = function(aCharId) {
+    let aChar = Character.allCharacter.find(x => x.id == aCharId);
+    if (aChar) return aChar;
+    else throw Error(`No se encuentra personaje con el id $(aCharId)`);
+}
+
+Character.removeById = function(aCharId) {
+    let aChar = Character.findById(aCharId);
+    // for(let i=0; i<Character.allCharacter.length; i++) {
+    //     if (Character)
+    // }
+}
+
+let a = new Character(1, 'Juan', 25, 80.5);
+let b = new Character(2, 'Maria', 20, 61.0);
 Character.add(a);
 Character.add(b);
 
