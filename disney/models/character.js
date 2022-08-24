@@ -1,3 +1,23 @@
+const { Model, DataTypes } = require('sequelize');
+
+class Character extends Model {}
+
+Character.init({
+    // image: {
+    //     type: DataTypes.IM
+    // }
+    name: {
+        type: DataTypes.STRING
+    },
+    age: {
+        type: DataTypes.INTEGER
+    },
+    weight: {
+        type: DataTypes.FLOAT
+    }
+})
+
+/*
 const Character = function(id, name, age, weight) {
     this.id = id;
     this.name = name;
@@ -37,3 +57,4 @@ Character.add(a);
 Character.add(b);
 
 module.exports = Character;
+*/
