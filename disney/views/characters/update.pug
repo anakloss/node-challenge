@@ -13,8 +13,8 @@ block content
   br
 
   form(action=`/characters/update/${aChar.id}` method='post')
-    label(for='id') ID: 
-    input#id(type='text' name='id' value=aChar.id)
+    label(for='picture') Pic: 
+    input#id(type='text' name='picture' value=aChar.picture)
     br
     label(for='name') Nombre: 
     input#name(type='text' name='name' value=aChar.name)
@@ -24,6 +24,9 @@ block content
     br
     label(for='weight') Peso: 
     input#weight(type='text' name='weight' value=aChar.weight)
+    br
+    label(for='history') Historia: 
+    input#weight(type='text' name='history' value=aChar.history)
     br
     br
 

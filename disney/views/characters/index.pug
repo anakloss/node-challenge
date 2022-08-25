@@ -9,19 +9,23 @@ block content
     thead 
       tr
         th(scope='col') #
+        th(scope='col') Pic
         th(scope='col') Name
         th(scope='col') Age
         th(scope='col') Weight
-        th(scope='col')
+        th(scope='col') History
+        th(scope='col') 
         th(scope='col')
     tbody 
       each character in characters 
         tr
           td(scope='row')
             = character.id
+          td= character.picture
           td= character.name 
           td= character.age 
           td= character.weight 
+          td= character.history
           td 
             a(href='characters/update/' + character.id) Editar
           td 

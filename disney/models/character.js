@@ -1,60 +1,37 @@
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-class Character extends Model {}
+class Character extends Model { }
 
 Character.init({
-    // image: {
-    //     type: DataTypes.IM
-    // }
-    name: {
-        type: DataTypes.STRING
-    },
-    age: {
-        type: DataTypes.INTEGER
-    },
-    weight: {
-        type: DataTypes.FLOAT
-    }
-})
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  picture: {
+      type: DataTypes.STRING
+  },
+  name: {
+    type: DataTypes.STRING
+  },
+  age: {
+    type: DataTypes.INTEGER
+  },
+  weight: {
+    type: DataTypes.FLOAT
+  },
+  history: {
+    type: DataTypes.TEXT
+  }
+  // movies
+}, {
+  sequelize,
+  modelName: 'character'
+});
 
-/*
-const Character = function(id, name, age, weight) {
-    this.id = id;
-    this.name = name;
-    this.age = age;
-    this.weight = weight;
-}
-
-//add image, history, movies
-
-Character.prototype.toString = function() {
-    return 'name: ' + this.name + " | age: " + this.age;
-}
-
-Character.allCharacter = [];
-Character.add = function(aChar) {
-    Character.allCharacter.push(aChar);
-}
-
-Character.findById = function(aCharId) {
-    let aChar = Character.allCharacter.find(x => x.id == aCharId);
-    if (aChar) return aChar;
-    else throw new Error(`No se encuentra personaje con el id ${aCharId}`);
-}
-
-Character.removeById = function(aCharId) {
-    for(let i=0; i<Character.allCharacter.length; i++) {
-        if (Character.allCharacter[i].id == aCharId) {
-            Character.allCharacter.splice(i, 1);
-            break;
-        }
-    }
-}
-
-let a = new Character(1, 'Juan', 25, 80.5);
-let b = new Character(2, 'Maria', 20, 61.0);
-Character.add(a);
-Character.add(b);
+// Users.associate = (models) => {
+//   Users.hasMany(models.Tasks);
+// };
 
 module.exports = Character;
-*/

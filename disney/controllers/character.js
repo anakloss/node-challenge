@@ -1,40 +1,40 @@
 const Character = require('../models/character');
 
-exports.character_list = function(req, res) {
-    res.render('characters/index', {characters: Character.allCharacter});
+exports.character_list = async function (req, res) {
+  let chars = await Character.findAll();  // attributes: ['id', 'name', 'age']
+  res.render('characters/index', { characters: chars });
 }
 
 // Create
-exports.character_create_get = function(req, res) {
-    res.render('characters/create');
+exports.character_create_get = function (req, res) {
+  res.render('characters/create');
 }
-exports.character_create_post = function(req, res) {
-    let aChar = new Character(
-        req.body.id,
-        req.body.name,
-        req.body.age,
-        req.body.weight
-    );
-    Character.add(aChar);
+exports.character_create_post = function (req, res) {
+  let aChar = Character.build(req.body);
+  aChar.save();
 
-    res.redirect('/characters');
+  res.redirect('/characters');
 }
 
-exports.character_delete_post = function(req, res) {
-    Character.removeById(req.body.id);
-    res.redirect('/characters');
+// Delete
+exports.character_delete_post = async function (req, res) {
+  await Character.destroy({ where: { id: req.params.id } });
+  res.redirect('/characters');
 }
 
-exports.character_update_get = function(req, res) {
-    let aChar = Character.findById(req.params.id);
-    res.render('characters/update', {aChar});
+// Update
+exports.character_update_get = async function (req, res) {
+  let aChar = await Character.findOne({ where: { id: req.params.id }});
+  res.render('characters/update', { aChar });
 }
-exports.character_update_post = function(req, res) {
-    let aChar = Character.findById(req.params.id);
-    aChar.id = req.body.id;
-    aChar.name = req.body.name;
-    aChar.age = req.body.age;
-    aChar.weight = req.body.weight;
+exports.character_update_post = async function (req, res) {
+  let aChar = await Character.findOne({ where: { id: req.params.id }});
+  aChar.picture = req.body.picture;
+  aChar.name = req.body.name;
+  aChar.age = req.body.age;
+  aChar.weight = req.body.weight;
+  aChar.history = req.body.history;
+  await aChar.save();
 
-    res.redirect('/characters');
+  res.redirect('/characters');
 }
