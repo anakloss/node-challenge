@@ -14,7 +14,7 @@ block content
 
   form(action=`/characters/update/${aChar.id}` method='post')
     label(for='picture') Pic: 
-    input#id(type='text' name='picture' value=aChar.picture)
+    input#id(type='file' name='picture' value=aChar.picture)
     br
     label(for='name') Nombre: 
     input#name(type='text' name='name' value=aChar.name)

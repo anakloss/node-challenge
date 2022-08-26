@@ -5,27 +5,17 @@ block content
   br
   a(href='/characters/create') Nuevo
   h1 Listado de Personajes
-  table.table(style='text-align: center;')
+  table.table(style='text-align: center;' width='500px')
     thead 
       tr
-        th(scope='col') #
         th(scope='col') Pic
         th(scope='col') Name
-        th(scope='col') Age
-        th(scope='col') Weight
-        th(scope='col') History
-        th(scope='col') 
-        th(scope='col')
     tbody 
       each character in characters 
         tr
           td(scope='row')
-            = character.id
-          td= character.picture
+            = character.picture
           td= character.name 
-          td= character.age 
-          td= character.weight 
-          td= character.history
           td 
             a(href='characters/update/' + character.id) Editar
           td 
