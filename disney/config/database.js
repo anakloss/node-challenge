@@ -1,12 +1,11 @@
 const Sequelize = require('sequelize');
+const config = require('./database.config')
 
-const sequelize = new Sequelize('disneydb', '', '', {
-  dialect: 'sqlite',
-  storage: 'disney-db.sqlite',
-  define: {
-    underscore: true
-  }
-  // operatorsAliases: false,
-})
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  config.params
+)
 
 module.exports = sequelize;
