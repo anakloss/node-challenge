@@ -10,10 +10,14 @@ Character.init({
     autoIncrement: true
   },
   picture: {
-      type: DataTypes.STRING
+    type: DataTypes.STRING
   },
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   age: {
     type: DataTypes.INTEGER
