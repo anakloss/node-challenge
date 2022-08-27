@@ -1,15 +1,15 @@
 const Character = require('../models/character');
 
-exports.findAllCharacter = async function (req, res) {
-  await Character.findAll({ attributes: ['picture', 'name'] })
+exports.findAllCharacter = function (req, res) {
+  Character.findAll({ attributes: ['picture', 'name'] })
     .then(result => res.json(result))
     .catch(error => {
       res.status(412).json({ msg: error.message })
     })
 }
 
-exports.findOneCharacter = async function (req, res) {
-  await Character.findOne({ where: req.params })
+exports.findOneCharacter = function (req, res) {
+  Character.findOne({ where: req.params })
     .then(result => {
       if (result) {
         res.json(result)

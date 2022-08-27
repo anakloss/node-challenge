@@ -1,7 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../bin/database');
+const Movie = require('./movie');
 
-class Character extends Model { }
+class Character extends Model {}
 
 Character.init({
   id: {
@@ -28,14 +29,13 @@ Character.init({
   history: {
     type: DataTypes.TEXT
   }
-  // movies
 }, {
   sequelize,
   modelName: 'character'
 });
 
-// Users.associate = (models) => {
-//   Users.hasMany(models.Tasks);
-// };
+Character.belongsToMany(Movie, {
+  through: 'CharacterMovies'
+});
 
 module.exports = Character;
