@@ -19,7 +19,7 @@ Genre.init({
   }
 }, {
   sequelize,
-  modelName: 'genres'
+  modelName: 'genre'
 });
 
 module.exports = Genre;

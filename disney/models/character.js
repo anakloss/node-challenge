@@ -35,7 +35,7 @@ Character.init({
 });
 
 Character.belongsToMany(Movie, {
-  through: 'CharacterMovies'
+  through: 'character_movies'
 });
 
 module.exports = Character;

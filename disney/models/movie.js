@@ -30,7 +30,7 @@ Movie.init({
   }
 }, {
   sequelize,
-  modelName: 'movies'
+  modelName: 'movie'
 });
 
 Movie.belongsTo(Genre, {
