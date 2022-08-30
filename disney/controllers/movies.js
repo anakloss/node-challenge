@@ -2,7 +2,20 @@ const Character = require('../models/character');
 const Movie = require('../models/movie');
 
 exports.findAllMovie = function (req, res) {
-  Movie.findAll({ attributes: ['picture', 'title', 'create_date'] })
+  const { name, genre, order } = req.query
+  let queryFind = {}
+  let queryOrder = []
+
+  if (name) queryFind.title = name
+  if (genre) queryFind.genreId = genre
+  if (order && order === 'ASC') queryOrder.push(['create_date', 'ASC'])
+  else queryOrder.push(['create_date', 'DESC'])
+
+  Movie.findAll({
+    where: queryFind,
+    order: queryOrder,
+    attributes: ['picture', 'title', 'create_date']
+  })
     .then(result => res.json(result))
     .catch(error => {
       res.status(412).json({ msg: error.message })
