@@ -2,7 +2,6 @@ const Character = require('../models/character');
 const Movie = require('../models/movie');
 
 exports.findAllCharacter = function (req, res) {
- 
   Character.findAll({
     where: req.query,
     attributes: ['id', 'picture', 'name']

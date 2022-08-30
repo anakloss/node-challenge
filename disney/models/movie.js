@@ -19,7 +19,7 @@ Movie.init({
     allowNull: false
   },
   create_date: {
-    type: DataTypes.DATE
+    type: DataTypes.DATEONLY
   },
   calification: {
     type: DataTypes.INTEGER,

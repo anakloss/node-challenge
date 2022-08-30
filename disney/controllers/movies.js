@@ -1,7 +1,8 @@
+const Character = require('../models/character');
 const Movie = require('../models/movie');
 
 exports.findAllMovie = function (req, res) {
-  Movie.findAll({})
+  Movie.findAll({ attributes: ['picture', 'title', 'create_date'] })
     .then(result => res.json(result))
     .catch(error => {
       res.status(412).json({ msg: error.message })
@@ -9,7 +10,15 @@ exports.findAllMovie = function (req, res) {
 }
 
 exports.findOneMovie = function (req, res) {
-  Movie.findOne({ where: req.params })
+  Movie.findByPk(req.params.id, {
+    include: {
+      model: Character,
+      as: 'characters',
+      through: {
+        attributes: []
+      }
+    }
+  })
     .then(result => {
       if (result) {
         res.json(result)
