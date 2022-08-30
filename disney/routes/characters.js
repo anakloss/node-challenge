@@ -2,10 +2,10 @@ const express = require('express');
 var router = express.Router();
 const character = require('../controllers/characters');
 
-router.get('/', character.findAllCharacter);
-router.get('/:id', character.findOneCharacter);
-router.post('/', character.createCharacter);
-router.delete('/:id', character.deleteCharacter);
-router.put('/:id', character.updateCharacter);
+router.get('/', character.list_all);
+router.get('/:id', character.list_one);
+router.post('/', character.create);
+router.delete('/:id', character.delete);
+router.put('/:id', character.update);
 
 module.exports = router;
