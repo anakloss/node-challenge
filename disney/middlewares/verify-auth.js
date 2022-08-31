@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const config = require("../bin/config");
 const User = require("../models/user");
 
 
@@ -20,7 +19,7 @@ module.exports = {
       const token = req.headers["x-access-token"];
       if (!token) return res.status(403).json({ msg: 'No token provided' });
 
-      const decoded = jwt.verify(token, config.SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await User.findByPk(decoded.id, { password: 0 });
       if (!user) res.status(404).json({ msg: 'No user found ' });
 
