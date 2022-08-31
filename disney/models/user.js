@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../bin/database');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 
 class User extends Model { }
@@ -15,8 +14,7 @@ User.init({
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
-    is: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
+    unique: true
   },
   username: {
     type: DataTypes.STRING,
@@ -26,35 +24,20 @@ User.init({
   password: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  passwordResetToken: {
-    type: DataTypes.STRING
-  },
-  passwordResetTokenExpires: {
-    type: DataTypes.DATEONLY
-  },
-  verified: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
   }
 }, {
   sequelize,
   modelName: 'user',
-  validate: {
-    validateEmail() {
-      const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-      return re.test(this.email);
-    }
-  },
   hooks: {
-    beforeSave: function (user) {
-      user.password = bcrypt.hashSync(user.password, saltRounds);
+    beforeCreate: async function (user) {
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hashSync(user.password, salt);
     }
   }
 });
 
-User.prototype.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
+User.prototype.comparePassword = async function (password) {
+  return await bcrypt.compareSync(password, this.password);
 };
 
 module.exports = User;
