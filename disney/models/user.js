@@ -1,34 +1,60 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../bin/database');
-// const bcrypt = require('bcrypt');
-// const crypto = require('crypto');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 class User extends Model { }
 
 User.init({
-  username: {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  email: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
-    validate: {
-      notEmpty: {
-        args: false,
-        msg: "El usuario es obligatorio"
-      }
-    }
+    is: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
   },
   password: {
     type: DataTypes.STRING,
-    validate: {
-      notEmpty: {
-        args: false,
-        msg: "Contraseña es obligatoria"
-      }
-    }
+    allowNull: false
+  },
+  passwordResetToken: {
+    type: DataTypes.STRING
+  },
+  passwordResetTokenExpires: {
+    type: DataTypes.DATEONLY
+  },
+  verified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   }
 }, {
   sequelize,
-  modelName: 'user'
+  modelName: 'user',
+  validate: {
+    validateEmail() {
+      const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+      return re.test(this.email);
+    }
+  },
+  hooks: {
+    beforeSave: function (user) {
+      user.password = bcrypt.hashSync(user.password, saltRounds);
+    }
+  }
 });
+
+User.prototype.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = User;
