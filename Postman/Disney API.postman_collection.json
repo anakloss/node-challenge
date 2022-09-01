@@ -1,0 +1,632 @@
+{
+	"info": {
+		"_postman_id": "e4a52af3-51dd-4c91-b174-57ca7f3d7fa4",
+		"name": "Disney API",
+		"description": "API para explorar el mundo de Disney, la cual permite conocer y modificar los personajes que lo componen y entender en qué películas estos participaron.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18786036"
+	},
+	"item": [
+		{
+			"name": "Characters",
+			"item": [
+				{
+					"name": "allCharacters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							]
+						},
+						"description": "**Listado de personajes**\n\nEl listado muestra Imagen y Nombre"
+					},
+					"response": []
+				},
+				{
+					"name": "oneCharacter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								"1"
+							]
+						},
+						"description": "Listado de los atributos del personaje, como así también sus películas o  \nseries relacionadas."
+					},
+					"response": []
+				},
+				{
+					"name": "addCharacter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"picture\": \"image/mickey.jpg\",\n    \"name\": \"Mickey\",\n    \"age\": 18,\n    \"weight\": 50.3,\n    \"history\": \"Mickey Mouse es un personaje ficticio estadounidense de la serie del mismo nombre, emblema de la compañía Disney. Creado el 18 de noviembre de 1928.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							]
+						},
+						"description": "Creación de personajes."
+					},
+					"response": []
+				},
+				{
+					"name": "updateCharacter",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"weight\": \"51.2\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								"1"
+							]
+						},
+						"description": "Actualización de personajes."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCharacter",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								"1"
+							]
+						},
+						"description": "Eliminación de personajes."
+					},
+					"response": []
+				},
+				{
+					"name": "filterCharacter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters?name=Mickey&age=17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Mickey"
+								},
+								{
+									"key": "age",
+									"value": "17"
+								}
+							]
+						},
+						"description": "Permite buscar por nombre, y filtrar por edad, peso o películas/series en las que participó.  \n\n*   GET /characters?name=nombre\n*   GET /characters?age=edad\n*   GET /characters?movies=idMovie"
+					},
+					"response": []
+				}
+			],
+			"description": "**Modelo Personaje**: deberá tener,  \n○ Imagen.  \n○ Nombre.  \n○ Edad.  \n○ Peso.  \n○ Historia.  \n○ Películas o series asociadas."
+		},
+		{
+			"name": "Genres",
+			"item": [
+				{
+					"name": "allGenres",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genres"
+							]
+						},
+						"description": "**Listado de Género**"
+					},
+					"response": []
+				},
+				{
+					"name": "oneGenre",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genres/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genres",
+								"1"
+							]
+						},
+						"description": "**Detalle de Género**"
+					},
+					"response": []
+				},
+				{
+					"name": "addGenre",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"picture\": \"genre/infantil.jpg\",\n    \"name\": \"Infantil\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genres"
+							]
+						},
+						"description": "Creación de Género"
+					},
+					"response": []
+				},
+				{
+					"name": "updateGenre",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sci-Fi\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/genres/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genres",
+								"1"
+							]
+						},
+						"description": "Actualización de Género."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGenre",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/genres/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genres",
+								"1"
+							]
+						},
+						"description": "Eliminación de Género."
+					},
+					"response": []
+				}
+			],
+			"description": "**Modelo Género**: deberá tener,  \n○ Nombre.  \n○ Imagen.  \n○ Películas o series asociadas."
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "allMovies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Lista todas las Películas"
+					},
+					"response": []
+				},
+				{
+					"name": "oneMovie",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "**Detalle de Película / Serie con sus personajes**  \nDevolverá todos los campos de la película o serie junto a los personajes asociados a la misma."
+					},
+					"response": []
+				},
+				{
+					"name": "addMovie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"picture\": \"movie/fantasia.jpg\",\n    \"title\": \"Fantasía\",\n    \"create_date\": \"1940\",\n    \"calification\": 4,\n    \"genreId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Crea una nueva Película"
+					},
+					"response": []
+				},
+				{
+					"name": "updateMovie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"calification\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "Actualiza una Película"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMovie",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "Elimina una Película"
+					},
+					"response": []
+				},
+				{
+					"name": "filterMovie",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/movies?name=Fantasía",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Fantasía"
+								},
+								{
+									"key": "genre",
+									"value": "1",
+									"description": "idGenero",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "ASC",
+									"description": "ASC o DESC",
+									"disabled": true
+								}
+							]
+						},
+						"description": "**Búsqueda de Películas o Series**  \nPermite buscar por título, y filtrar por género. Además, permitir ordenar los resultados por fecha de creación de forma ascendiente o descendiente.  \n\n*   GET /movies?name=nombre\n*   GET /movies?genre=idGenero\n*   GET /movies?order=ASC | DESC"
+					},
+					"response": []
+				}
+			],
+			"description": "**Listado de Películas**  \nMuestra solamente los campos imagen, título y fecha de creación."
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@disneyapi.com\",\n    \"password\": \"adminpass\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autenticación de Usuario."
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"email\": \"admin@disneyapi.com\",\n    \"password\": \"adminpass\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "**Registro de Usuario**\n\nAl registrarse un usuario se envía un email de bienvenida."
+					},
+					"response": []
+				}
+			],
+			"description": "**Autenticación de Usuarios**  \nPara realizar peticiones a los endpoints subsiguientes el usuario debe contar con un token que obtiene al autenticarse."
+		}
+	]
+}
