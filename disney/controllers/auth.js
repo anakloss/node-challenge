@@ -12,7 +12,7 @@ module.exports = {
     if (token) { 
       const email_destination = req.body.email;
       const mailOptions = {
-        from: 'no-reply@disneyapi.com',
+        from: (process.env.NODE_ENV === 'production') ? process.env.SENDGRID_EMAIL_USER : 'no-reply@disnetapi.com',
         to: email_destination,
         subject: 'Bienvenido a Disney API',
         text: `Hola ${req.body.username},\n\n Bienvenido a Disney API de NodeJs Backend Challenge de Alkemy.`
