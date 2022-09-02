@@ -8,6 +8,7 @@ module.exports = {
     define: {
       underscore: true
     },
+    logging: false
     // operatorsAliases: false
   }
 };

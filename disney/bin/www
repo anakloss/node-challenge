@@ -98,3 +98,6 @@ function onListening() {
 db.sync()
   .then(() => console.log('BD conectada'))
   .catch(error => console.log('Error al conectar BD', error))
+
+  
+module.exports = server;
