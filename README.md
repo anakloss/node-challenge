@@ -1,5 +1,13 @@
 # 🚀 CHALLENGE BACKEND - NodeJs
 
+## Instalación
+```
+git clone https://github.com/anakloss/node-challenge.git
+cd disney
+npm install
+npm run start
+```
+
 ## Documentación
 Postman Doc: https://documenter.getpostman.com/view/18786036/VUxLvTNr
 
